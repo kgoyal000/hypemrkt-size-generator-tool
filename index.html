@@ -1,0 +1,309 @@
+<!-- Shopify page embed: JSON Creator preloaded with WOMEN READY-TO-WEAR. Columns UI removed; columns grow/shrink automatically from rows. -->
+<div id="kg-sgc-creator" class="kg-sgc" data-key="kg-sgc-draft">
+  <div class="kg-sgc__header">
+    <h2 class="kg-sgc__title">Size Guide JSON Creator</h2>
+    <div class="kg-sgc__actions">
+      <button type="button" class="kg-sgc__btn" data-reset-default>Reset to Default</button>
+      <button type="button" class="kg-sgc__btn" data-clear>Clear</button>
+    </div>
+  </div>
+
+  <div class="kg-sgc__card">
+    <label class="kg-sgc__label">Title</label>
+    <input type="text" class="kg-sgc__input" data-field="title" placeholder="e.g. WOMEN READY-TO-WEAR">
+  </div>
+
+  <div class="kg-sgc__card">
+    <div class="kg-sgc__card-head">
+      <h3>Rows</h3>
+      <div class="kg-sgc__right">
+        <button type="button" class="kg-sgc__btn" data-add-row>Add row</button>
+        <div class="kg-sgc__divider"></div>
+        <button type="button" class="kg-sgc__btn" data-preset="Bust">+ Bust</button>
+        <button type="button" class="kg-sgc__btn" data-preset="Waist">+ Waist</button>
+        <button type="button" class="kg-sgc__btn" data-preset="Hips">+ Hips</button>
+        <div class="kg-sgc__divider"></div>
+        <button type="button" class="kg-sgc__btn" data-preset="US size">+ US size</button>
+        <button type="button" class="kg-sgc__btn" data-preset="FR size">+ FR size</button>
+        <button type="button" class="kg-sgc__btn" data-preset="UK Size">+ UK Size</button>
+        <button type="button" class="kg-sgc__btn" data-preset="IT size">+ IT size</button>
+      </div>
+    </div>
+    <div class="kg-sgc__rows" data-rows></div>
+  </div>
+
+  <div class="kg-sgc__grid">
+    <div class="kg-sgc__card">
+      <div class="kg-sgc__card-head">
+        <h3>Preview</h3>
+      </div>
+      <div class="kg-sgc__hint">Edit column names here. Columns automatically follow the longest row.</div>
+      <div class="kg-sgc__headers" data-headers></div>
+      <div class="kg-sgc__table-wrap" data-preview></div>
+    </div>
+
+    <div class="kg-sgc__card">
+      <div class="kg-sgc__card-head">
+        <h3>JSON</h3>
+        <div class="kg-sgc__right">
+          <button type="button" class="kg-sgc__btn" data-copy>Copy</button>
+          <button type="button" class="kg-sgc__btn" data-download>Download</button>
+        </div>
+      </div>
+      <textarea class="kg-sgc__code" readonly data-json></textarea>
+      <div class="kg-sgc__msg" data-msg></div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ---------- SCOPE EVERYTHING ---------- */
+.kg-sgc { --kg-gap:16px; --kg-border:#111; --kg-muted:#6b6b6b; font: inherit; }
+.kg-sgc * { box-sizing:border-box; }
+
+/* layout */
+.kg-sgc__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--kg-gap);} .kg-sgc__title{margin:0;font-weight:800;letter-spacing:.02em}
+.kg-sgc__actions{display:flex;gap:8px;flex-wrap:wrap}
+.kg-sgc__grid{display:grid;gap:var(--kg-gap);grid-template-columns:1fr; }
+@media(min-width:920px){ .kg-sgc__grid{grid-template-columns:1fr 1fr;} }
+
+.kg-sgc__card{border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:16px;background:#fff;}
+.kg-sgc__card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.kg-sgc__right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.kg-sgc__divider{width:1px;height:22px;background:rgba(0,0,0,.15);} 
+
+.kg-sgc__label{display:block;font-weight:600;margin-bottom:6px}
+.kg-sgc__input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.2);border-radius:10px;}
+
+/* buttons */
+.kg-sgc__btn{appearance:none;border:1px solid rgba(0,0,0,.2);background:#f7f7f7;border-radius:10px;padding:8px 10px;cursor:pointer}
+.kg-sgc__btn:hover{background:#efefef}
+.kg-sgc__mini{padding:6px 8px;border-radius:8px}
+
+.kg-sgc__rows{display:grid;gap:12px}
+.kg-sgc__row{border:1px solid rgba(0,0,0,.12);border-radius:10px;padding:10px}
+.kg-sgc__row-head{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.kg-sgc__row-label{flex:1;padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px}
+.kg-sgc__row-actions{display:flex;gap:6px}
+.kg-sgc__cells{display:grid;gap:8px}
+.kg-sgc__cells input{width:100%;padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px}
+.kg-sgc__hint{color:var(--kg-muted);font-size:.9em;margin:8px 0}
+
+.kg-sgc__headers{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));margin-bottom:8px}
+.kg-sgc__headers input{padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px;width:100%}
+
+.kg-sgc__msg{margin-top:10px;color:#0a6b2d}
+.kg-sgc__code{width:100%;height:220px;border:1px solid rgba(0,0,0,.2);border-radius:10px;padding:12px;background:#0a0a0a;color:#d2ffd2;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;}
+
+/* preview table */
+.kg-sgc__table-wrap{overflow-x:auto}
+.kg-sgc__table{width:100%;border-collapse:separate;border-spacing:0;text-align:center;table-layout:fixed}
+.kg-sgc__table th,.kg-sgc__table td{border:1px solid var(--kg-border);padding:12px 10px;background:#fff}
+.kg-sgc__table thead th{font-weight:700}
+.kg-sgc__table .first,.kg-sgc__table .rowhead{text-align:left;font-weight:700;width:120px;background:#f7f7f7}
+</style>
+
+<script>
+(() => {
+  const root   = document.getElementById('kg-sgc-creator');
+  if (!root) return;
+
+  const storeKey = root.dataset.key || 'kg-sgc-draft';
+  const els = {
+    title: root.querySelector('[data-field="title"]'),
+    rowsWrap: root.querySelector('[data-rows]'),
+    headers: root.querySelector('[data-headers]'),
+    preview: root.querySelector('[data-preview]'),
+    jsonOut: root.querySelector('[data-json]'),
+    msg: root.querySelector('[data-msg]'),
+    btnAddRow: root.querySelector('[data-add-row]'),
+    btnCopy: root.querySelector('[data-copy]'),
+    btnDownload: root.querySelector('[data-download]'),
+    btnResetDefault: root.querySelector('[data-reset-default]'),
+    btnClear: root.querySelector('[data-clear]')
+  };
+
+  // Default dataset from screenshot
+  const DEFAULT_DATA = {
+    title: "WOMEN READY-TO-WEAR",
+    columns: ["XXS","XS","S","M","L","XL","XXL"],
+    rows: [
+      { label: "Label size", cells: ["XXS","XS","S","M","L","XL","XXL"] },
+      { label: "US size",    cells: ["0","2","4","6","8","10","12"] },
+      { label: "FR size",    cells: ["32","34","36","38","40","42","44"] },
+      { label: "UK Size",    cells: ["4","6","8","10","12","14","16"] },
+      { label: "IT size",    cells: ["36","38","40","42","44","46","48"] },
+      { label: "Label size", cells: ["1","1","1","2","3","4","5"] },
+      { label: "Bust",       cells: ["78 cm","80 cm","84 cm","88 cm","92 cm","96 cm","100 cm"] },
+      { label: "Waist",      cells: ["58 cm","62 cm","65 cm","72 cm","76 cm","78 cm","82 cm"] },
+      { label: "Hips",       cells: ["86 cm","90 cm","94 cm","98 cm","102 cm","106 cm","110 cm"] }
+    ]
+  };
+
+  let state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+
+  // ---------- helpers ----------
+  const save = () => localStorage.setItem(storeKey, JSON.stringify(state));
+  const load = () => { try { const raw = localStorage.getItem(storeKey); if (raw) state = JSON.parse(raw);} catch(e){} };
+  const setMsg = (t, ok=true) => { els.msg.textContent = t || ''; els.msg.style.color = ok ? '#0a6b2d' : '#9b1c1c'; if (t) setTimeout(()=>{ els.msg.textContent=''; }, 3000); };
+  const maxRowLen = () => Math.max(0, ...state.rows.map(r => (r.cells||[]).length));
+  function resyncColumnsFromRows(){
+    const target = maxRowLen();
+    // Grow
+    while (state.columns.length < target) state.columns.push('');
+    // Shrink only trailing if no data beyond target
+    if (state.columns.length > target) state.columns.length = target;
+    // Ensure each row has same length with fill
+    state.rows.forEach(r=>{ r.cells = (r.cells||[]).slice(0, target); while(r.cells.length < target) r.cells.push(''); });
+  }
+
+  // ---------- renderers ----------
+  function renderHeaders(){
+    els.headers.innerHTML = '';
+    const n = state.columns.length;
+    for (let i=0;i<n;i++){
+      const inp = document.createElement('input');
+      inp.value = state.columns[i] || '';
+      inp.setAttribute('data-hcol', i);
+      inp.placeholder = `Col ${i+1}`;
+      els.headers.appendChild(inp);
+    }
+    // Add small buttons for header add/remove
+    const ctrls = document.createElement('div');
+    ctrls.className = 'kg-sgc__right';
+    ctrls.style.marginTop = '6px';
+    ctrls.innerHTML = `<button type="button" class="kg-sgc__btn kg-sgc__mini" data-hcol-add>+ Add column</button>
+                       <button type="button" class="kg-sgc__btn kg-sgc__mini" data-hcol-del>Remove last</button>`;
+    els.headers.appendChild(ctrls);
+  }
+
+  function renderRows(){
+    els.rowsWrap.innerHTML = '';
+    const colCount = Math.max(1, state.columns.length);
+
+    state.rows.forEach((row, rIdx) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'kg-sgc__row';
+      wrap.innerHTML = `
+        <div class=\"kg-sgc__row-head\">
+          <input type=\"text\" class=\"kg-sgc__row-label\" value=\"${escapeHtml(row.label||'')}\" data-row-label=\"${rIdx}\" placeholder=\"Row label e.g. US size, Bust\">
+          <div class=\"kg-sgc__row-actions\">
+            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-up=\"${rIdx}\">↑</button>
+            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-down=\"${rIdx}\">↓</button>
+            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-del=\"${rIdx}\">Remove</button>
+          </div>
+        </div>
+        <div class=\"kg-sgc__cells\" style=\"grid-template-columns: repeat(${colCount}, minmax(0, 1fr));\">
+          ${Array.from({length: row.cells.length || 0}).map((_, cIdx) => `
+            <input type=\"text\" value=\"${escapeHtml((row.cells||[])[cIdx]||'')}\" data-cell=\"${rIdx}:${cIdx}\" placeholder=\"${escapeHtml(state.columns[cIdx]||('Col '+(cIdx+1)))}\">
+          `).join('')}
+        </div>
+        <div class=\"kg-sgc__right\" style=\"margin-top:8px; display: none\">
+          <button type=\"button\" class=\"kg-sgc__btn kg-sgc__mini\" data-add-cell=\"${rIdx}\">+ Add column in this row</button>
+          <button type=\"button\" class=\"kg-sgc__btn kg-sgc__mini\" data-del-cell=\"${rIdx}\">Remove last column</button>
+        </div>`;
+      els.rowsWrap.appendChild(wrap);
+    });
+  }
+
+  function renderPreview(){
+    if (!state.columns.length || !state.rows.length){
+      els.preview.innerHTML = '<div class="kg-sgc__hint">Add at least one row and one column.</div>';
+      return;
+    }
+    const thead = `<thead><tr><th class="first">Size</th>${state.columns.map(c=>`<th>${escapeHtml(c||'')}</th>`).join('')}</tr></thead>`;
+    const tbody = `<tbody>${state.rows.map(r=>`
+      <tr><th class="rowhead">${escapeHtml(r.label||'')}</th>${
+        (r.cells||[]).slice(0,state.columns.length).map(v=>`<td>${escapeHtml(v||'')}</td>`).join('')
+      }</tr>
+    `).join('')}</tbody>`;
+    els.preview.innerHTML = `<h4 style="text-align:center;margin:0 0 10px">${escapeHtml(state.title||'')}</h4><table class="kg-sgc__table">${thead}${tbody}</table>`;
+  }
+
+  function renderJSON(){
+    const clean = { title:(state.title||'').trim(), columns: state.columns.map(String), rows: state.rows.map(r => ({ label:(r.label||'').trim(), cells:(r.cells||[]).slice(0,state.columns.length).map(String) })) };
+    els.jsonOut.value = JSON.stringify(clean, null, 2);
+  }
+
+  function renderAll(){
+    els.title.value = state.title || '';
+    resyncColumnsFromRows();
+    renderHeaders();
+    renderRows();
+    renderPreview();
+    renderJSON();
+    save();
+  }
+
+  // ---------- events ----------
+  // title
+  els.title.addEventListener('input', e => { state.title = e.target.value; renderPreview(); renderJSON(); save(); });
+
+  // header edits
+  els.headers.addEventListener('input', e => {
+    const i = e.target.getAttribute('data-hcol');
+    if (i !== null){ state.columns[+i] = e.target.value; renderPreview(); renderJSON(); save(); }
+  });
+  els.headers.addEventListener('click', e => {
+    if (e.target.matches('[data-hcol-add]')){ state.columns.push(''); state.rows.forEach(r=>r.cells.push('')); renderAll(); }
+    if (e.target.matches('[data-hcol-del]')){ if (state.columns.length>0){ state.columns.pop(); state.rows.forEach(r=>r.cells.pop()); renderAll(); } }
+  });
+
+  // rows input
+  els.rowsWrap.addEventListener('input', e => {
+    const rLabel = e.target.getAttribute('data-row-label');
+    const cell = e.target.getAttribute('data-cell');
+    if (rLabel !== null){ state.rows[+rLabel].label = e.target.value; renderPreview(); renderJSON(); save(); }
+    if (cell !== null){ const [r,c] = cell.split(':').map(Number); state.rows[r].cells[c] = e.target.value; renderPreview(); renderJSON(); save(); }
+  });
+
+  // rows buttons
+  els.rowsWrap.addEventListener('click', e => {
+    const up = e.target.getAttribute('data-row-up');
+    const down = e.target.getAttribute('data-row-down');
+    const del = e.target.getAttribute('data-row-del');
+    const addc = e.target.getAttribute('data-add-cell');
+    const delc = e.target.getAttribute('data-del-cell');
+
+    if (up !== null){ const i=+up; if(i>0){ swap(state.rows,i,i-1); } renderAll(); return; }
+    if (down !== null){ const i=+down; if(i<state.rows.length-1){ swap(state.rows,i,i+1); } renderAll(); return; }
+    if (del !== null){ state.rows.splice(+del,1); renderAll(); return; }
+
+    if (addc !== null){ const i=+addc; if(!state.rows[i].cells) state.rows[i].cells = []; state.rows[i].cells.push(''); resyncColumnsFromRows(); renderAll(); return; }
+    if (delc !== null){ const i=+delc; if (state.rows[i].cells && state.rows[i].cells.length){ state.rows[i].cells.pop(); resyncColumnsFromRows(); renderAll(); } return; }
+  });
+
+  // presets (adds empty row with that label)
+  root.addEventListener('click', e => {
+    const preset = e.target.getAttribute('data-preset');
+    if (!preset) return;
+    const n = Math.max(1, state.columns.length || maxRowLen() || 1);
+    const row = { label: preset, cells: new Array(n).fill('') };
+    state.rows.push(row); renderAll();
+  });
+
+  // copy / download / clear / reset-default
+  root.addEventListener('click', async (e) => {
+    if (e.target.matches('[data-copy]')){
+      try{ await navigator.clipboard.writeText(els.jsonOut.value); setMsg('Copied to clipboard'); } catch(e){ setMsg('Copy failed', false); }
+    }
+    if (e.target.matches('[data-download]')){
+      const blob = new Blob([els.jsonOut.value], {type:'application/json'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (state.title || 'size_guide') + '.json'; document.body.appendChild(a); a.click(); a.remove();
+    }
+    if (e.target.matches('[data-clear]')){
+      if (!confirm('Clear current work?')) return; state = { title:'', columns:[], rows:[] }; renderAll();
+    }
+    if (e.target.matches('[data-reset-default]')){
+      state = JSON.parse(JSON.stringify(DEFAULT_DATA)); renderAll(); setMsg('Reset to default');
+    }
+  });
+
+  // ---------- init ----------
+  load(); resyncColumnsFromRows(); renderAll();
+
+  // ---------- utilities ----------
+  function swap(arr, a, b){ const t=arr[a]; arr[a]=arr[b]; arr[b]=t; }
+  function escapeHtml(s=''){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+})();
+</script>

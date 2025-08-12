@@ -1,111 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Size Guide JSON Creator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh;">
+
 <!-- Shopify page embed: JSON Creator preloaded with WOMEN READY-TO-WEAR. Columns UI removed; columns grow/shrink automatically from rows. -->
-<div id="kg-sgc-creator" class="kg-sgc" data-key="kg-sgc-draft">
-  <div class="kg-sgc__header">
-    <h2 class="kg-sgc__title">Size Guide JSON Creator</h2>
-    <div class="kg-sgc__actions">
-      <button type="button" class="kg-sgc__btn" data-reset-default>Reset to Default</button>
-      <button type="button" class="kg-sgc__btn" data-clear>Clear</button>
-    </div>
-  </div>
-
-  <div class="kg-sgc__card">
-    <label class="kg-sgc__label">Title</label>
-    <input type="text" class="kg-sgc__input" data-field="title" placeholder="e.g. WOMEN READY-TO-WEAR">
-  </div>
-
-  <div class="kg-sgc__card">
-    <div class="kg-sgc__card-head">
-      <h3>Rows</h3>
-      <div class="kg-sgc__right">
-        <button type="button" class="kg-sgc__btn" data-add-row>Add row</button>
-        <div class="kg-sgc__divider"></div>
-        <button type="button" class="kg-sgc__btn" data-preset="Bust">+ Bust</button>
-        <button type="button" class="kg-sgc__btn" data-preset="Waist">+ Waist</button>
-        <button type="button" class="kg-sgc__btn" data-preset="Hips">+ Hips</button>
-        <div class="kg-sgc__divider"></div>
-        <button type="button" class="kg-sgc__btn" data-preset="US size">+ US size</button>
-        <button type="button" class="kg-sgc__btn" data-preset="FR size">+ FR size</button>
-        <button type="button" class="kg-sgc__btn" data-preset="UK Size">+ UK Size</button>
-        <button type="button" class="kg-sgc__btn" data-preset="IT size">+ IT size</button>
+<div class="container-fluid py-3" style="max-width: 1600px;">
+  <div class="bg-white rounded-4 shadow-lg p-4" id="kg-sgc-creator" data-key="kg-sgc-draft">
+    
+    <!-- Header -->
+    <div class="text-center mb-4 p-4 rounded-3" style="background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); color: white; margin: -1rem -1rem 2rem -1rem;">
+      <h1 class="h2 mb-3 fw-bold">
+        <i class="bi bi-table me-2"></i>Size Guide JSON Creator
+      </h1>
+      <div class="d-flex gap-2 flex-wrap justify-content-center">
+        <button type="button" class="btn btn-light btn-sm" data-reset-default>
+          <i class="bi bi-arrow-clockwise me-1"></i>Reset to Default
+        </button>
+        <button type="button" class="btn btn-outline-light btn-sm" data-clear>
+          <i class="bi bi-trash me-1"></i>Clear
+        </button>
       </div>
     </div>
-    <div class="kg-sgc__rows" data-rows></div>
-  </div>
 
-  <div class="kg-sgc__grid">
-    <div class="kg-sgc__card">
-      <div class="kg-sgc__card-head">
-        <h3>Preview</h3>
+    <!-- Title Input -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <label class="form-label fw-semibold">
+          <i class="bi bi-type me-1"></i>Title
+        </label>
+        <input type="text" class="form-control form-control-lg" data-field="title" placeholder="e.g. WOMEN READY-TO-WEAR">
       </div>
-      <div class="kg-sgc__hint">Edit column names here. Columns automatically follow the longest row.</div>
-      <div class="kg-sgc__headers" data-headers></div>
-      <div class="kg-sgc__table-wrap" data-preview></div>
     </div>
 
-    <div class="kg-sgc__card">
-      <div class="kg-sgc__card-head">
-        <h3>JSON</h3>
-        <div class="kg-sgc__right">
-          <button type="button" class="kg-sgc__btn" data-copy>Copy</button>
-          <button type="button" class="kg-sgc__btn" data-download>Download</button>
+    <!-- Rows Section -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-header bg-white">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <h5 class="mb-0 fw-semibold">
+            <i class="bi bi-list-ul me-2"></i>Rows
+          </h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <button type="button" class="btn btn-primary btn-sm" data-add-row>
+              <i class="bi bi-plus-circle me-1"></i>Add row
+            </button>
+            <div class="vr"></div>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-preset="Bust">+ Bust</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-preset="Waist">+ Waist</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-preset="Hips">+ Hips</button>
+            <div class="vr"></div>
+            <button type="button" class="btn btn-outline-info btn-sm" data-preset="US size">+ US size</button>
+            <button type="button" class="btn btn-outline-info btn-sm" data-preset="FR size">+ FR size</button>
+            <button type="button" class="btn btn-outline-info btn-sm" data-preset="UK Size">+ UK Size</button>
+            <button type="button" class="btn btn-outline-info btn-sm" data-preset="IT size">+ IT size</button>
+          </div>
         </div>
       </div>
-      <textarea class="kg-sgc__code" readonly data-json></textarea>
-      <div class="kg-sgc__msg" data-msg></div>
+      <div class="card-body">
+        <div data-rows></div>
+      </div>
     </div>
+
+    <!-- Preview and JSON Grid -->
+    <div class="row g-4">
+      <!-- Preview Column -->
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-white">
+            <h5 class="mb-0 fw-semibold">
+              <i class="bi bi-eye me-2"></i>Preview
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="alert alert-info py-2 mb-3">
+              <small><i class="bi bi-info-circle me-1"></i>Edit column names here. Columns automatically follow the longest row.</small>
+            </div>
+            <div data-headers class="mb-3"></div>
+            <div data-preview class="table-responsive"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JSON Column -->
+      <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+          <div class="card-header bg-white">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="mb-0 fw-semibold">
+                <i class="bi bi-code-square me-2"></i>JSON
+              </h5>
+              <div class="d-flex gap-2">
+                <button type="button" class="btn btn-success btn-sm" data-copy>
+                  <i class="bi bi-clipboard me-1"></i>Copy
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" data-download>
+                  <i class="bi bi-download me-1"></i>Download
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body d-flex flex-column">
+            <textarea class="form-control font-monospace flex-grow-1" readonly data-json style="min-height: 300px; background-color: #1e2124; color: #b9bbbe; border: none;"></textarea>
+            <div data-msg class="mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
-/* ---------- SCOPE EVERYTHING ---------- */
-.kg-sgc { --kg-gap:16px; --kg-border:#111; --kg-muted:#6b6b6b; font: inherit; }
-.kg-sgc * { box-sizing:border-box; }
+  /* Professional Design System */
+  :root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success-color: #059669;
+    --success-hover: #047857;
+    --danger-color: #dc2626;
+    --danger-hover: #b91c1c;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+  }
 
-/* layout */
-.kg-sgc__header{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--kg-gap);} .kg-sgc__title{margin:0;font-weight:800;letter-spacing:.02em}
-.kg-sgc__actions{display:flex;gap:8px;flex-wrap:wrap}
-.kg-sgc__grid{display:grid;gap:var(--kg-gap);grid-template-columns:1fr; }
-@media(min-width:920px){ .kg-sgc__grid{grid-template-columns:1fr 1fr;} }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
 
-.kg-sgc__card{border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:16px;background:#fff;}
-.kg-sgc__card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.kg-sgc__right{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.kg-sgc__divider{width:1px;height:22px;background:rgba(0,0,0,.15);} 
+  /* Card Enhancements */
+  .card {
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
 
-.kg-sgc__label{display:block;font-weight:600;margin-bottom:6px}
-.kg-sgc__input{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.2);border-radius:10px;}
+  .card-header {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    font-weight: 600;
+    color: var(--gray-700);
+    padding: 1.25rem;
+  }
 
-/* buttons */
-.kg-sgc__btn{appearance:none;border:1px solid rgba(0,0,0,.2);background:#f7f7f7;border-radius:10px;padding:8px 10px;cursor:pointer}
-.kg-sgc__btn:hover{background:#efefef}
-.kg-sgc__mini{padding:6px 8px;border-radius:8px}
+  .card-body {
+    padding: 1.5rem;
+  }
 
-.kg-sgc__rows{display:grid;gap:12px}
-.kg-sgc__row{border:1px solid rgba(0,0,0,.12);border-radius:10px;padding:10px}
-.kg-sgc__row-head{display:flex;gap:8px;align-items:center;margin-bottom:8px}
-.kg-sgc__row-label{flex:1;padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px}
-.kg-sgc__row-actions{display:flex;gap:6px}
-.kg-sgc__cells{display:grid;gap:8px}
-.kg-sgc__cells input{width:100%;padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px}
-.kg-sgc__hint{color:var(--kg-muted);font-size:.9em;margin:8px 0}
+  /* Professional Table Design - Matching Reference Image */
+  .professional-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #333;
+    border-radius: 0;
+    overflow: hidden;
+    font-size: 0.9rem;
+    background: white;
+    /* margin: 1rem 0; */
+  }
 
-.kg-sgc__headers{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));margin-bottom:8px}
-.kg-sgc__headers input{padding:8px 10px;border:1px solid rgba(0,0,0,.2);border-radius:10px;width:100%}
+  .professional-table th {
+    background: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    font-size: 0.875rem;
+  }
 
-.kg-sgc__msg{margin-top:10px;color:#0a6b2d}
-.kg-sgc__code{width:100%;height:220px;border:1px solid rgba(0,0,0,.2);border-radius:10px;padding:12px;background:#0a0a0a;color:#d2ffd2;font-family:ui-monospace, SFMono-Regular, Menlo, monospace;}
+  .professional-table th:first-child {
+    text-align: left;
+    background: #e9ecef;
+    font-weight: 700;
+    width: 120px;
+  }
 
-/* preview table */
-.kg-sgc__table-wrap{overflow-x:auto}
-.kg-sgc__table{width:100%;border-collapse:separate;border-spacing:0;text-align:center;table-layout:fixed}
-.kg-sgc__table th,.kg-sgc__table td{border:1px solid var(--kg-border);padding:12px 10px;background:#fff}
-.kg-sgc__table thead th{font-weight:700}
-.kg-sgc__table .first,.kg-sgc__table .rowhead{text-align:left;font-weight:700;width:120px;background:#f7f7f7}
+  .professional-table th:last-child {
+    border-right: none;
+  }
+
+  .professional-table td {
+    padding: 0.75rem 1rem;
+    text-align: center;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    background: white;
+    font-size: 0.875rem;
+  }
+
+  .professional-table td:first-child {
+    text-align: left;
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .professional-table td:last-child {
+    border-right: none;
+  }
+
+  .professional-table tbody tr:last-child td {
+    border-bottom: 2px solid #333;
+  }
+
+  /* Table Title */
+  .table-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    /* margin-bottom: 1rem; */
+    padding: 0.75rem;
+    background: white;
+    border: 2px solid #333;
+    border-bottom: none;
+  }
+
+  /* Form Enhancements */
+  .form-control {
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-control-lg {
+    padding: 0.875rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  /* Button Enhancements */
+  .btn {
+    border-radius: 0.5rem;
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-success {
+    background: var(--success-color);
+    border-color: var(--success-color);
+  }
+
+  .btn-success:hover {
+    background: var(--success-hover);
+    border-color: var(--success-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Row Styling */
+  .kg-row {
+    border: 1px solid var(--gray-200);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    background: white;
+    transition: all 0.2s ease;
+  }
+
+  .kg-row:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-color: var(--gray-300);
+  }
+
+  .kg-row-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .kg-row-actions {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .kg-cells {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
+
+  .kg-headers {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    margin-bottom: 1rem;
+  }
+
+  /* JSON Editor */
+  .json-editor {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid var(--gray-300);
+    border-radius: 0.5rem;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Alert Enhancements */
+  .alert {
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  .alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+  }
+
+  /* Responsive Improvements */
+  @media (max-width: 768px) {
+    .kg-cells, .kg-headers {
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      gap: 0.5rem;
+    }
+    
+    .professional-table th:first-child {
+      width: 100px;
+    }
+    
+    .professional-table th,
+    .professional-table td {
+      padding: 0.5rem 0.375rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Loading and Animation */
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 </style>
 
 <script>
 (() => {
-  const root   = document.getElementById('kg-sgc-creator');
+  const root = document.getElementById('kg-sgc-creator');
   if (!root) return;
 
   const storeKey = root.dataset.key || 'kg-sgc-draft';
@@ -145,8 +424,15 @@
   // ---------- helpers ----------
   const save = () => localStorage.setItem(storeKey, JSON.stringify(state));
   const load = () => { try { const raw = localStorage.getItem(storeKey); if (raw) state = JSON.parse(raw);} catch(e){} };
-  const setMsg = (t, ok=true) => { els.msg.textContent = t || ''; els.msg.style.color = ok ? '#0a6b2d' : '#9b1c1c'; if (t) setTimeout(()=>{ els.msg.textContent=''; }, 3000); };
+  const setMsg = (t, ok=true) => {
+    els.msg.innerHTML = t ? `<div class="alert alert-${ok ? 'success' : 'danger'} alert-dismissible fade show py-2" role="alert">
+      <small>${t}</small>
+      <button type="button" class="btn-close btn-close-sm" data-bs-dismiss="alert"></button>
+    </div>` : '';
+    if (t) setTimeout(() => { els.msg.innerHTML = ''; }, 3000);
+  };
   const maxRowLen = () => Math.max(0, ...state.rows.map(r => (r.cells||[]).length));
+  
   function resyncColumnsFromRows(){
     const target = maxRowLen();
     // Grow
@@ -161,19 +447,31 @@
   function renderHeaders(){
     els.headers.innerHTML = '';
     const n = state.columns.length;
+    
+    // Create headers grid
+    const headersGrid = document.createElement('div');
+    headersGrid.className = 'kg-headers mb-3';
+    
     for (let i=0;i<n;i++){
       const inp = document.createElement('input');
+      inp.className = 'form-control form-control-sm';
       inp.value = state.columns[i] || '';
       inp.setAttribute('data-hcol', i);
       inp.placeholder = `Col ${i+1}`;
-      els.headers.appendChild(inp);
+      headersGrid.appendChild(inp);
     }
-    // Add small buttons for header add/remove
+    els.headers.appendChild(headersGrid);
+    
+    // Add control buttons
     const ctrls = document.createElement('div');
-    ctrls.className = 'kg-sgc__right';
-    ctrls.style.marginTop = '6px';
-    ctrls.innerHTML = `<button type="button" class="kg-sgc__btn kg-sgc__mini" data-hcol-add>+ Add column</button>
-                       <button type="button" class="kg-sgc__btn kg-sgc__mini" data-hcol-del>Remove last</button>`;
+    ctrls.className = 'd-flex gap-2 flex-wrap';
+    ctrls.innerHTML = `
+      <button type="button" class="btn btn-outline-primary btn-sm" data-hcol-add>
+        <i class="bi bi-plus-circle me-1"></i>Add column
+      </button>
+      <button type="button" class="btn btn-outline-secondary btn-sm" data-hcol-del>
+        <i class="bi bi-dash-circle me-1"></i>Remove last
+      </button>`;
     els.headers.appendChild(ctrls);
   }
 
@@ -183,24 +481,26 @@
 
     state.rows.forEach((row, rIdx) => {
       const wrap = document.createElement('div');
-      wrap.className = 'kg-sgc__row';
+      wrap.className = 'kg-row';
       wrap.innerHTML = `
-        <div class=\"kg-sgc__row-head\">
-          <input type=\"text\" class=\"kg-sgc__row-label\" value=\"${escapeHtml(row.label||'')}\" data-row-label=\"${rIdx}\" placeholder=\"Row label e.g. US size, Bust\">
-          <div class=\"kg-sgc__row-actions\">
-            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-up=\"${rIdx}\">↑</button>
-            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-down=\"${rIdx}\">↓</button>
-            <button class=\"kg-sgc__btn kg-sgc__mini\" data-row-del=\"${rIdx}\">Remove</button>
+        <div class="kg-row-header">
+          <input type="text" class="form-control flex-grow-1" value="${escapeHtml(row.label||'')}" data-row-label="${rIdx}" placeholder="Row label e.g. US size, Bust">
+          <div class="kg-row-actions">
+            <button class="btn btn-outline-secondary btn-sm" data-row-up="${rIdx}" title="Move up">
+              <i class="bi bi-arrow-up"></i>
+            </button>
+            <button class="btn btn-outline-secondary btn-sm" data-row-down="${rIdx}" title="Move down">
+              <i class="bi bi-arrow-down"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm" data-row-del="${rIdx}" title="Remove">
+              <i class="bi bi-trash"></i>
+            </button>
           </div>
         </div>
-        <div class=\"kg-sgc__cells\" style=\"grid-template-columns: repeat(${colCount}, minmax(0, 1fr));\">
+        <div class="kg-cells">
           ${Array.from({length: row.cells.length || 0}).map((_, cIdx) => `
-            <input type=\"text\" value=\"${escapeHtml((row.cells||[])[cIdx]||'')}\" data-cell=\"${rIdx}:${cIdx}\" placeholder=\"${escapeHtml(state.columns[cIdx]||('Col '+(cIdx+1)))}\">
+            <input type="text" class="form-control form-control-sm" value="${escapeHtml((row.cells||[])[cIdx]||'')}" data-cell="${rIdx}:${cIdx}" placeholder="${escapeHtml(state.columns[cIdx]||('Col '+(cIdx+1)))}">
           `).join('')}
-        </div>
-        <div class=\"kg-sgc__right\" style=\"margin-top:8px; display: none\">
-          <button type=\"button\" class=\"kg-sgc__btn kg-sgc__mini\" data-add-cell=\"${rIdx}\">+ Add column in this row</button>
-          <button type=\"button\" class=\"kg-sgc__btn kg-sgc__mini\" data-del-cell=\"${rIdx}\">Remove last column</button>
         </div>`;
       els.rowsWrap.appendChild(wrap);
     });
@@ -208,20 +508,33 @@
 
   function renderPreview(){
     if (!state.columns.length || !state.rows.length){
-      els.preview.innerHTML = '<div class="kg-sgc__hint">Add at least one row and one column.</div>';
+      els.preview.innerHTML = '<div class="alert alert-warning py-2"><small><i class="bi bi-exclamation-triangle me-1"></i>Add at least one row and one column.</small></div>';
       return;
     }
-    const thead = `<thead><tr><th class="first">Size</th>${state.columns.map(c=>`<th>${escapeHtml(c||'')}</th>`).join('')}</tr></thead>`;
+    
+    // Create professional table showing only rows data (matching reference image)
+    // Title displayed above, table shows column headers and row data
+    const thead = `<thead></thead>`;
     const tbody = `<tbody>${state.rows.map(r=>`
-      <tr><th class="rowhead">${escapeHtml(r.label||'')}</th>${
+      <tr><td>${escapeHtml(r.label||'')}</td>${
         (r.cells||[]).slice(0,state.columns.length).map(v=>`<td>${escapeHtml(v||'')}</td>`).join('')
       }</tr>
     `).join('')}</tbody>`;
-    els.preview.innerHTML = `<h4 style="text-align:center;margin:0 0 10px">${escapeHtml(state.title||'')}</h4><table class="kg-sgc__table">${thead}${tbody}</table>`;
+    
+    els.preview.innerHTML = `
+      <div class="table-title">${escapeHtml(state.title||'')}</div>
+      <table class="professional-table">${thead}${tbody}</table>`;
   }
 
   function renderJSON(){
-    const clean = { title:(state.title||'').trim(), columns: state.columns.map(String), rows: state.rows.map(r => ({ label:(r.label||'').trim(), cells:(r.cells||[]).slice(0,state.columns.length).map(String) })) };
+    const clean = {
+      title:(state.title||'').trim(),
+      columns: state.columns.map(String),
+      rows: state.rows.map(r => ({
+        label:(r.label||'').trim(),
+        cells:(r.cells||[]).slice(0,state.columns.length).map(String)
+      }))
+    };
     els.jsonOut.value = JSON.stringify(clean, null, 2);
   }
 
@@ -245,8 +558,18 @@
     if (i !== null){ state.columns[+i] = e.target.value; renderPreview(); renderJSON(); save(); }
   });
   els.headers.addEventListener('click', e => {
-    if (e.target.matches('[data-hcol-add]')){ state.columns.push(''); state.rows.forEach(r=>r.cells.push('')); renderAll(); }
-    if (e.target.matches('[data-hcol-del]')){ if (state.columns.length>0){ state.columns.pop(); state.rows.forEach(r=>r.cells.pop()); renderAll(); } }
+    if (e.target.matches('[data-hcol-add]') || e.target.closest('[data-hcol-add]')){
+      state.columns.push('');
+      state.rows.forEach(r=>r.cells.push(''));
+      renderAll();
+    }
+    if (e.target.matches('[data-hcol-del]') || e.target.closest('[data-hcol-del]')){
+      if (state.columns.length>0){
+        state.columns.pop();
+        state.rows.forEach(r=>r.cells.pop());
+        renderAll();
+      }
+    }
   });
 
   // rows input
@@ -259,51 +582,86 @@
 
   // rows buttons
   els.rowsWrap.addEventListener('click', e => {
-    const up = e.target.getAttribute('data-row-up');
-    const down = e.target.getAttribute('data-row-down');
-    const del = e.target.getAttribute('data-row-del');
-    const addc = e.target.getAttribute('data-add-cell');
-    const delc = e.target.getAttribute('data-del-cell');
+    const target = e.target.closest('[data-row-up], [data-row-down], [data-row-del]');
+    if (!target) return;
+    
+    const up = target.getAttribute('data-row-up');
+    const down = target.getAttribute('data-row-down');
+    const del = target.getAttribute('data-row-del');
 
     if (up !== null){ const i=+up; if(i>0){ swap(state.rows,i,i-1); } renderAll(); return; }
     if (down !== null){ const i=+down; if(i<state.rows.length-1){ swap(state.rows,i,i+1); } renderAll(); return; }
     if (del !== null){ state.rows.splice(+del,1); renderAll(); return; }
+  });
 
-    if (addc !== null){ const i=+addc; if(!state.rows[i].cells) state.rows[i].cells = []; state.rows[i].cells.push(''); resyncColumnsFromRows(); renderAll(); return; }
-    if (delc !== null){ const i=+delc; if (state.rows[i].cells && state.rows[i].cells.length){ state.rows[i].cells.pop(); resyncColumnsFromRows(); renderAll(); } return; }
+  // Add row button
+  document.addEventListener('click', e => {
+    const target = e.target.closest('[data-add-row]');
+    if (!target) return;
+    const n = Math.max(1, state.columns.length || maxRowLen() || 1);
+    const row = { label: '', cells: new Array(n).fill('') };
+    state.rows.push(row);
+    renderAll();
   });
 
   // presets (adds empty row with that label)
-  root.addEventListener('click', e => {
-    const preset = e.target.getAttribute('data-preset');
+  document.addEventListener('click', e => {
+    const target = e.target.closest('[data-preset]');
+    if (!target) return;
+    const preset = target.getAttribute('data-preset');
     if (!preset) return;
     const n = Math.max(1, state.columns.length || maxRowLen() || 1);
     const row = { label: preset, cells: new Array(n).fill('') };
-    state.rows.push(row); renderAll();
+    state.rows.push(row);
+    renderAll();
   });
 
   // copy / download / clear / reset-default
-  root.addEventListener('click', async (e) => {
-    if (e.target.matches('[data-copy]')){
-      try{ await navigator.clipboard.writeText(els.jsonOut.value); setMsg('Copied to clipboard'); } catch(e){ setMsg('Copy failed', false); }
+  document.addEventListener('click', async (e) => {
+    const target = e.target.closest('[data-copy], [data-download], [data-clear], [data-reset-default]');
+    if (!target) return;
+    
+    if (target.matches('[data-copy]')){
+      try{
+        await navigator.clipboard.writeText(els.jsonOut.value);
+        setMsg('Copied to clipboard successfully!');
+      } catch(e){
+        setMsg('Copy failed', false);
+      }
     }
-    if (e.target.matches('[data-download]')){
+    if (target.matches('[data-download]')){
       const blob = new Blob([els.jsonOut.value], {type:'application/json'});
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = (state.title || 'size_guide') + '.json'; document.body.appendChild(a); a.click(); a.remove();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (state.title || 'size_guide') + '.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setMsg('File downloaded successfully!');
     }
-    if (e.target.matches('[data-clear]')){
-      if (!confirm('Clear current work?')) return; state = { title:'', columns:[], rows:[] }; renderAll();
+    if (target.matches('[data-clear]')){
+      if (!confirm('Clear current work?')) return;
+      state = { title:'', columns:[], rows:[] };
+      renderAll();
+      setMsg('Cleared successfully!');
     }
-    if (e.target.matches('[data-reset-default]')){
-      state = JSON.parse(JSON.stringify(DEFAULT_DATA)); renderAll(); setMsg('Reset to default');
+    if (target.matches('[data-reset-default]')){
+      state = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      renderAll();
+      setMsg('Reset to default successfully!');
     }
   });
 
   // ---------- init ----------
-  load(); resyncColumnsFromRows(); renderAll();
+  load();
+  resyncColumnsFromRows();
+  renderAll();
 
   // ---------- utilities ----------
   function swap(arr, a, b){ const t=arr[a]; arr[a]=arr[b]; arr[b]=t; }
   function escapeHtml(s=''){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 })();
 </script>
+
+</body>
+</html>
